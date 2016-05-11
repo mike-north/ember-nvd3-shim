@@ -1,4 +1,4 @@
-# ember-nvd3-shim
+# ember-nvd3-shim [![Build Status](https://travis-ci.org/levanto-financial/ember-nvd3-shim.svg?branch=master)](https://travis-ci.org/levanto-financial/ember-nvd3-shim)
 
 A simple shim for [NVD3.js](http://nvd3.org), that exposes the library as an es6 module
 
