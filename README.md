@@ -1,8 +1,22 @@
-# Ember-nvd3-shim
+# ember-nvd3-shim
 
-This README outlines the details of collaborating on this Ember addon.
+A simple shim for [NVD3.js](http://nvd3.org), that exposes the library as an es6 module
 
 ## Installation
+
+Please install this addon into your Ember.js project using ember-cli
+```sh
+ember install ember-nvd3-shim
+```
+
+and then you can import nvd3 as an ES6 module
+
+```js
+import nvd3 from 'nvd3'
+
+```
+
+## Contributing
 
 * `git clone` this repository
 * `npm install`
