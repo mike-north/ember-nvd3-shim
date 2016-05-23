@@ -4,9 +4,9 @@
 module.exports = {
   name: 'ember-nvd3-shim',
   included: function included(app) {
-
+    app.import(app.bowerDirectory + '/d3/d3.js');
     if (process.env.EMBER_CLI_FASTBOOT !== 'true') {
-      app.import(app.bowerDirectory + '/d3/d3.min.js');
+
       app.import(app.bowerDirectory + '/nvd3/build/nv.d3.js');
 
       var options1 = app.options['ember-cli-nvd3'];

@@ -8,7 +8,6 @@
       return values;
     });
   }
-  console.log(d3);
-  console.log(nv);
-  generateModule('nv', { 'default': nv });
+
+  generateModule('nv', { 'default': nv || {} });
 })();
