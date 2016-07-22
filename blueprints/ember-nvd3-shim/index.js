@@ -4,9 +4,10 @@ module.exports = {
   normalizeEntityName: function() {},
 
   afterInstall: function() {
-    return this.addAddonToProject('ember-d3@~0.2.0').then(function() {
-      return this.addBowerPackageToProject('nvd3', '~1.8.3');
-    }.bind(this));
+    return this.addBowerPackagesToProject([
+      {name: 'nvd3', target: '^1.8.0'},
+      {name: 'd3', target: '^3.0.0'}
+    ]);
   }
 
   // locals: function(options) {
