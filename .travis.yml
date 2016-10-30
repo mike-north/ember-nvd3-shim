@@ -1,29 +1,39 @@
+---
 language: node_js
 node_js:
-- '0.12'
+  - "4"
+
 sudo: false
+
 cache:
   directories:
-  - node_modules
+    - node_modules
+
 env:
-- EMBER_TRY_SCENARIO=ember-1.13
-- EMBER_TRY_SCENARIO=ember-release
-- EMBER_TRY_SCENARIO=ember-beta
-- EMBER_TRY_SCENARIO=ember-canary
+  # we recommend testing LTS's and latest stable release (bonus points to beta/canary)
+  - EMBER_TRY_SCENARIO=ember-1.13
+  - EMBER_TRY_SCENARIO=ember-lts-2.4
+  - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-beta
+  - EMBER_TRY_SCENARIO=ember-canary
+
 matrix:
   fast_finish: true
   allow_failures:
-  - env: EMBER_TRY_SCENARIO=ember-canary
+    - env: EMBER_TRY_SCENARIO=ember-canary
+
 before_install:
-- export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
-- npm config set spin false
-- npm install -g npm@^2
+  - npm config set spin false
+  - npm install -g bower
+  - bower --version
+  - npm install phantomjs-prebuilt
+  - node_modules/phantomjs-prebuilt/bin/phantomjs --version
+
 install:
-- npm install -g bower
-- npm install
-- bower install
+  - npm install
+  - bower install
+
 script:
-- ember try $EMBER_TRY_SCENARIO test --skip-cleanup
-notifications:
-  slack:
-    secure: CWBrKLf9KsJiDIb+7qkjE4B13f3d9uTdLPf6dor4Bwd2/qsv9rqlKFS1YVqfmGKoRoDeZZH0DWK83N0zt70XhP0AFRvQHro02aVugdgKBx9JgcKtdbxqNv//Q9L2+WDZ+e1C9BtYE49xzaE8n4wGXH25ddIR0bWSpi3QHkpROzeye/FiMMpUA+eoFpqU7JMlMaKa1bErWLoIEDDsMMVHRe/At5gzP9XStTCGU03IAqW16QIVjKdn7h94b2sHYmN59D7I4bf34gwe4xeAoeW/OX0YQx7dUet0emQHDoxl92FSh1runNpZtYirlucYDxD8cgEBQ0aphU/AS2aXc2yeqrTREPiseQ0D4jiVEUujzYR7KpCbHF/J4miknuo1gfhgW5OMQ503Yz0DtAhC+XHBKLbqMjUDnlcK5QYbUCUrBtE7R7CRZvWgosWmu3j6ZZv3uN84JeHAnTO/jQWiOBCTFvnqdifszjc48PRJOKnW69HsyMha8ZXkw/ys0KZpXQIOMKCLyjDwFY9v0W6G6dojN/p+ArBpi2g4/6JjcEl5LyoDsrbD0ABeu7Az75BF22UVqKuFTokFSSXkj0PTUw4ytf9wwRMBAUyhAK6a+TSFW3TmiDIcYPW+Ozlu4hQRSXy6prYITQ4h6CavzwNqPw/vxZ2AnKgR4Jm+5wMqYDP7eG8=
+  # Usually, it's ok to finish the test scenario without reverting
+  #  to the addon's original dependency state, skipping "cleanup".
+  - ember try:one $EMBER_TRY_SCENARIO test --skip-cleanup
