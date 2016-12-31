@@ -4,10 +4,12 @@ module.exports = {
   normalizeEntityName: function() {},
 
   afterInstall: function() {
-    return this.addBowerPackagesToProject([
-      {name: 'nvd3', target: '^1.8.0'},
-      {name: 'd3', target: '^3.0.0'}
-    ]);
+    var self = this;
+
+    return this.addBowerPackageToProject('nvd3','^1.8.0')
+      .then(function () {
+        return self.addAddonToProject('brzpegasus/ember-d3#v3');
+      });
   }
 
   // locals: function(options) {
