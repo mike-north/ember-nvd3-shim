@@ -1,5 +1,7 @@
 # ember-nvd3-shim [![Build Status](https://travis-ci.org/mike-north/ember-nvd3-shim.svg?branch=master)](https://travis-ci.org/mike-north/ember-nvd3-shim)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mike-north/ember-nvd3-shim.svg)](https://greenkeeper.io/)
+
 A simple shim for [NVD3.js](http://nvd3.org), that exposes the library as an es6 module
 
 ## Installation
